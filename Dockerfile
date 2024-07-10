@@ -16,9 +16,9 @@ RUN apt-get update && \
 RUN wget -O /tmp/H2Orestart-0.6.6.oxt https://extensions.libreoffice.org/assets/downloads/2303/1720302570/H2Orestart-0.6.6.oxt
 
 # Install H2Orestart extension using unopkg
-RUN /opt/libreoffice7.5/program/soffice --headless --norestore --nofirststartwizard --accept="socket,host=localhost,port=2002;urp;" --nodefault --nologo & \
+RUN libreoffice --headless --norestore --nofirststartwizard --accept="socket,host=localhost,port=2002;urp;" --nodefault --nologo & \
     sleep 10 && \
-    /opt/libreoffice7.5/program/unopkg add --shared /tmp/H2Orestart-0.6.6.oxt && \
+    unopkg add --shared /tmp/H2Orestart-0.6.6.oxt && \
     pkill -f soffice
 
 # Copy test files to the container
@@ -28,4 +28,4 @@ COPY /hwp_files /hwp_files
 EXPOSE 2002
 
 # Set the default command
-CMD ["/opt/libreoffice7.5/program/soffice", "--headless", "--norestore", "--nofirststartwizard", "--accept=socket,host=localhost,port=2002;urp;"]
+CMD ["libreoffice", "--headless", "--norestore", "--nofirststartwizard", "--accept=socket,host=localhost,port=2002;urp;"]
