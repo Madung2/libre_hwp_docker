@@ -26,4 +26,6 @@ COPY /hwp_files /hwp_files
 EXPOSE 2002
 
 # Set the default command
-CMD ["libreoffice", "--headless", "--norestore", "--nofirststartwizard", "--accept=socket,host=localhost,port=2002;urp;"]
+#CMD ["libreoffice", "--headless", "--norestore", "--nofirststartwizard", "--accept=socket,host=localhost,port=2002;urp;"]
+# Set the default command to convert hwp files to docx
+CMD find /hwp_files -name '*.hwp' -exec libreoffice --headless --convert-to docx {} \;
