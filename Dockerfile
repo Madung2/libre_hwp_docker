@@ -22,7 +22,7 @@ RUN libreoffice --headless --norestore --nofirststartwizard --accept="socket,hos
     pkill -f soffice
 
 # Copy test files to the container
-COPY /path/to/your/files /test_files
+COPY /hwp_files /hwp_files
 
 # Expose port for LibreOffice
 EXPOSE 2002
